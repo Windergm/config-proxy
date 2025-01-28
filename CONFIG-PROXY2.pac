@@ -1,6 +1,6 @@
 function FindProxyForURL(url, host) {
     // Si el dominio es www.domestika.org, no usar proxy
-    if (shExpMatch(host, www.domestika.org) || shExpMatch(host, "domestika.org")) {
+    if (shExpMatch(host, www.domestika.org) || shExpMatch(host, domestika.org)) {
         
        
 return "DIRECT"; // Conexión directa sin proxy
