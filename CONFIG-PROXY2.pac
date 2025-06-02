@@ -5,5 +5,5 @@ function FindProxyForURL(url, host) {
     }
 
     // Todo lo demás pasa por el proxy
-    return "PROXY 45.170.253.190:5010";
+    return "PROXY 45.170.253.190:50100";
 }
