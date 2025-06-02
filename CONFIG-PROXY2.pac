@@ -5,7 +5,7 @@ function FindProxyForURL(url, host) {
         "perplexity.ai": "PROXY 23.94.188.154:8800",
         "artlist.io": "PROXY 66.63.178.169:8800",
         "chatgpt.com": "PROXY 45.170.253.190:50100",
-        "domestika.org": "PROXY 1.1.1.1",
+        "domestika.org": "PROXY  45.170.253.190:5010",
         "freepik.es": "PROXY 66.63.178.163:8800",
         "freepik.com": "PROXY 23.94.65.182:8800",
         "placeit.net": "PROXY 66.78.32.82:5132", // Cambiado a otro proxy
