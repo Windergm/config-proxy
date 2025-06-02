@@ -1,6 +1,3 @@
-
-
-
 function FindProxyForURL(url, host) {
     // Excluir domestika.org y www.domestika.org del proxy
     if (dnsDomainIs(host, "domestika.org") || shExpMatch(host, "www.domestika.org")) {
