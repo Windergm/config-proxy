@@ -6,8 +6,8 @@ function FindProxyForURL(url, host) {
         "artlist.io": "PROXY 193.233.211.46:8080",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
         "domestika.org": "PROXY 193.233.211.46:8080",
-        "freepik.es": "PROXY 91.132.124.122:8080",
-        "freepik.com": "PROXY 45.159.23.249:8080",
+        "freepik.es": "PROXY 46.3.124.181:50100",
+        "freepik.com": "PROXY 46.3.124.181:50100",
         "placeit.net": "PROXY 161.123.54.112:5496", // proxy propio
         "canva.com": "PROXY 93.177.95.214:8080",
         "platzi.com": "PROXY 66.63.178.42:8800",
