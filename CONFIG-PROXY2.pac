@@ -1,14 +1,6 @@
 function FindProxyForURL(url, host) {
     host = host.toLowerCase();
 
-    // Conexión directa para hosts locales o IPs privadas
-    if (isPlainHostName(host) ||
-        shExpMatch(host, "10.*") ||
-        shExpMatch(host, "192.168.*") ||
-        shExpMatch(host, "127.*")) {
-        return "DIRECT";
-    }
-
     // Conexión directa para archivos grandes o descargas
     if (shExpMatch(url, "*.zip") || shExpMatch(url, "*.rar") || shExpMatch(url, "*.7z") ||
         shExpMatch(url, "*.tar") || shExpMatch(url, "*.gz") || shExpMatch(url, "*.iso") ||
@@ -18,7 +10,6 @@ function FindProxyForURL(url, host) {
         shExpMatch(url, "*.pdf")) {
         return "DIRECT";
     }
-
     // Reglas de proxy específicas por dominio
     if (dnsDomainIs(host, "adobe.com")) return "PROXY 102.129.178.6:4414";
     if (dnsDomainIs(host, "perplexity.ai") || dnsDomainIs(host, "artlist.io")) return "PROXY 96.62.127.25:50100";
