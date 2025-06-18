@@ -15,7 +15,7 @@ function FindProxyForURL(url, host) {
     if (dnsDomainIs(host, "perplexity.ai") || dnsDomainIs(host, "artlist.io")) return "PROXY 96.62.127.25:50100";
     if (dnsDomainIs(host, "chatgpt.com")) return "PROXY 91.132.124.97:8080";
     if (dnsDomainIs(host, "domestika.org")) return "PROXY 193.233.211.46:8080";
-    if (dnsDomainIs(host, "freepik.com") || dnsDomainIs(host, "freepik.es")) return "PROXY 46.3.124.181:50100";
+    if (dnsDomainIs(host, "freepik.com") || dnsDomainIs(host, "freepik.es")) return "PROXY 193.233.211.46:8080";
     if (dnsDomainIs(host, "placeit.net")) return "PROXY 161.123.54.112:5496";
     if (dnsDomainIs(host, "canva.com")) return "PROXY 93.177.95.214:8080";
     if (dnsDomainIs(host, "platzi.com")) return "PROXY 45.136.27.41:8080";
