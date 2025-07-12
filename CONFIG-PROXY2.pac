@@ -18,7 +18,7 @@ function FindProxyForURL(url, host) {
     if (dnsDomainIs(host, "freepik.com") || dnsDomainIs(host, "freepik.es")) return "PROXY 45.170.253.190:50100";
     if (dnsDomainIs(host, "placeit.net")) return "PROXY 161.123.54.112:5496";
     if (dnsDomainIs(host, "canva.com")) return "PROXY 93.177.95.214:8080";
-    if (dnsDomainIs(host, "platzi.com")) return "PROXY 45.136.27.41:8080";
+    if (dnsDomainIs(host, "platzi.com")) return "PROXY 14.102.232.254:50100";
     if (dnsDomainIs(host, "crehana.com")) return "PROXY 193.233.210.11:8080";
     if (dnsDomainIs(host, "cloud.microsoft")) return "PROXY 14.102.232.254:50100";
     if (dnsDomainIs(host, "creativefabrica.com")) return "PROXY 148.135.147.24:6534";
