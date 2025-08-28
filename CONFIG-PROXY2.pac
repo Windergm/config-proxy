@@ -22,8 +22,9 @@ function FindProxyForURL(url, host) {
     if (dnsDomainIs(host, "cloud.microsoft")) return "PROXY 14.102.232.254:50100";
     if (dnsDomainIs(host, "creativefabrica.com")) return "PROXY 148.135.147.24:6534";
     if (dnsDomainIs(host, "motionarray.com")) return "PROXY 14.102.232.254:50100";
-    if (dnsDomainIs(host, "envato.com")) return "PROXY 14.102.232.254:50100";
+    if (dnsDomainIs(host, "envato.com")) return "PROXY 45.170.253.85:50100";
 
     // Todo lo demás va directo
     return "DIRECT";
 }
+
