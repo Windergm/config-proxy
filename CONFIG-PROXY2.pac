@@ -12,7 +12,7 @@ function FindProxyForURL(url, host) {
     }
     // Reglas de proxy específicas por dominio
     if (dnsDomainIs(host, "adobe.com")) return "PROXY 102.129.178.6:4414";
-    if (dnsDomainIs(host, "perplexity.ai") || dnsDomainIs(host, "artlist.io")) return "PROXY 96.62.127.25:50100";
+    if (dnsDomainIs(host, "perplexity.ai") return "PROXY 96.62.127.25:50100";
     if (dnsDomainIs(host, "chatgpt.com")) return "PROXY 91.132.124.97:8080";
     if (dnsDomainIs(host, "freepik.com") || dnsDomainIs(host, "freepik.es")) return "PROXY 45.170.253.85:50100";
     if (dnsDomainIs(host, "placeit.net")) return "PROXY 161.123.54.112:5496";
@@ -27,5 +27,6 @@ function FindProxyForURL(url, host) {
     // Todo lo demás va directo
     return "DIRECT";
 }
+
 
 
