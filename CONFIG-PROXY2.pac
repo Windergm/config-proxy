@@ -10,7 +10,6 @@ function FindProxyForURL(url, host) {
         "chatgpt.com": "PROXY 91.132.124.97:8080; DIRECT",
         "freepik.com": "PROXY 45.170.253.85:50100; DIRECT",
         "freepik.es": "PROXY 45.170.253.85:50100; DIRECT",
-        "placeit.net": "PROXY 161.123.54.112:5496; DIRECT",
         "canva.com": "PROXY 93.177.95.214:8080; DIRECT",
         "platzi.com": "PROXY 14.102.232.254:50100; DIRECT",
         "crehana.com": "PROXY 193.233.210.11:8080; DIRECT",
@@ -65,6 +64,7 @@ function FindProxyForURL(url, host) {
     // Fallback general - conexión directa por defecto
     return "DIRECT";
 }
+
 
 
 
