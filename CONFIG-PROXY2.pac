@@ -13,7 +13,7 @@ function FindProxyForURL(url, host) {
         "canva.com": "PROXY 93.177.95.214:8080; DIRECT",
         "platzi.com": "PROXY 14.102.232.254:50100; DIRECT",
         "crehana.com": "PROXY 193.233.210.11:8080; DIRECT",
-        "cloud.microsoft": "PROXY 14.102.232.254:50100; DIRECT",
+        "cloud.microsoft": "PROXY 45.170.253.85:50100; DIRECT",
         "creativefabrica.com": "PROXY 148.135.147.24:6534; DIRECT",
         "envato.com": "PROXY 45.170.253.51:50100; DIRECT"
     };
@@ -64,6 +64,7 @@ function FindProxyForURL(url, host) {
     // Fallback general - conexión directa por defecto
     return "DIRECT";
 }
+
 
 
 
