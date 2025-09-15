@@ -1,9 +1,23 @@
 function FindProxyForURL(url, host) {
-    // Normalizar URL y host para mejor rendimiento
     url = url.toLowerCase();
     host = host.toLowerCase();
-    
-    // Cache DNS estático para mejorar rendimiento
+
+    // Lista de dominios que deben ir siempre DIRECT (Firefox Sync, extensiones, etc.)
+    var firefoxBypass = [
+        "accounts.firefox.com",
+        "sync.services.mozilla.com",
+        "addons.mozilla.org",
+        "mozilla.org",
+        "firefox.com",
+        "services.addons.mozilla.org"
+    ];
+
+    for (var i = 0; i < firefoxBypass.length; i++) {
+        if (dnsDomainIs(host, firefoxBypass[i]) || host === firefoxBypass[i]) {
+            return "DIRECT";
+        }
+    }
+  // Cache DNS estático para dominios específicos
     var staticProxies = {
         "adobe.com": "PROXY 102.129.178.6:4414; DIRECT",
         "perplexity.ai": "PROXY 96.62.127.25:50100; DIRECT", 
@@ -17,61 +31,35 @@ function FindProxyForURL(url, host) {
         "creativefabrica.com": "PROXY 148.135.147.24:6534; DIRECT",
         "envato.com": "PROXY 45.170.253.51:50100; DIRECT"
     };
-    
-    // Bypass para archivos grandes y contenido multimedia (optimizado)
+// Bypass para archivos grandes y multimedia
     if (url.match(/\.(zip|rar|7z|tar|gz|iso|exe|msi|mp4|mkv|avi|mov|mp3|flac|wav|pdf)(\?|$)/)) {
         return "DIRECT";
     }
-    
-    // Bypass para CDNs y contenido estático (reduce carga del proxy)
+
+    // Bypass para CDNs y contenido estático
     if (host.match(/^(cdn\.|media\.|img\.|static\.|assets\.|videos\.|images\.|photos\.)/)) {
         return "DIRECT";
     }
-    
-    // Bypass para direcciones locales e intranet
+
+    // Bypass para redes locales
     if (isPlainHostName(host) ||
         shExpMatch(host, "localhost") ||
         shExpMatch(host, "127.*") ||
         shExpMatch(host, "10.*") ||
         shExpMatch(host, "172.16.*") ||
-        shExpMatch(host, "172.17.*") ||
-        shExpMatch(host, "172.18.*") ||
-        shExpMatch(host, "172.19.*") ||
-        shExpMatch(host, "172.20.*") ||
-        shExpMatch(host, "172.21.*") ||
-        shExpMatch(host, "172.22.*") ||
-        shExpMatch(host, "172.23.*") ||
-        shExpMatch(host, "172.24.*") ||
-        shExpMatch(host, "172.25.*") ||
-        shExpMatch(host, "172.26.*") ||
-        shExpMatch(host, "172.27.*") ||
-        shExpMatch(host, "172.28.*") ||
-        shExpMatch(host, "172.29.*") ||
-        shExpMatch(host, "172.30.*") ||
         shExpMatch(host, "172.31.*") ||
         shExpMatch(host, "192.168.*") ||
         shExpMatch(host, "169.254.*")) {
         return "DIRECT";
     }
-    
-    // Reglas optimizadas con fallback para dominios específicos
+ // Aplicar proxy específico si el dominio coincide
     for (var domain in staticProxies) {
-        if (dnsDomainIs(host, domain) || host == domain) {
+        if (dnsDomainIs(host, domain) || host === domain) {
             return staticProxies[domain];
         }
     }
-    
-    // Fallback general - conexión directa por defecto
+
+    // Conexión directa por defecto
     return "DIRECT";
 }
-
-
-
-
-
-
-
-
-
-
-
+ 
