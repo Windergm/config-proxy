@@ -51,14 +51,14 @@ function FindProxyForURL(url, host) {
         "adobe.com": "PROXY 102.129.178.6:4414",
         "perplexity.ai": "PROXY 96.62.127.25:50100",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
-        "freepik.com": "PROXY 45.170.253.85:50100",
-        "freepik.es": "PROXY 45.170.253.85:50100",
+        "freepik.com": "PROXY 109.111.36.220:50100",
+        "freepik.es": "PROXY 109.111.36.220:50100",
         "canva.com": "PROXY 93.177.95.214:8080",
         "platzi.com": "PROXY 14.102.232.254:50100",
         "crehana.com": "PROXY 193.233.210.11:8080",
         "cloud.microsoft": "PROXY 45.170.253.85:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
-        "envato.com": "PROXY 45.170.253.51:50100"
+        "envato.com": "PROXY 45.170.253.171:50100"
     };
     for (var domain in staticProxies) {
         if (dnsDomainIs(host, domain) || host === domain) {
@@ -69,3 +69,4 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
