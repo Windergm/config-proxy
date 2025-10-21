@@ -8,6 +8,7 @@ function FindProxyForURL(url, host) {
         "sync.services.mozilla.com",
         "addons.mozilla.org",
         "mozilla.org",
+        "api-gateway-assets.aws.labs.envato.com",
         "firefox.com",
         "services.addons.mozilla.org"
     ];
@@ -69,4 +70,5 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
 
