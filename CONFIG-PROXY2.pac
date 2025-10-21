@@ -6,6 +6,7 @@ function FindProxyForURL(url, host) {
     var firefoxBypass = [
         "accounts.firefox.com",
         "sync.services.mozilla.com",
+        "labs.envato.com/video-gen",
         "addons.mozilla.org",
         "mozilla.org",
         "api-gateway-assets.aws.labs.envato.com",
@@ -70,5 +71,6 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
 
 
