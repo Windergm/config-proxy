@@ -60,7 +60,7 @@ function FindProxyForURL(url, host) {
         "crehana.com": "PROXY 193.233.210.11:8080",
         "cloud.microsoft": "PROXY 45.170.253.85:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
-        "envato.com": "PROXY 45.170.253.171:50100"
+        "envato.com": "PROXY 109.111.36.220:50100"
     };
     for (var domain in staticProxies) {
         if (dnsDomainIs(host, domain) || host === domain) {
@@ -71,6 +71,7 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
 
 
 
