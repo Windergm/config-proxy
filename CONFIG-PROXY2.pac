@@ -58,6 +58,7 @@ function FindProxyForURL(url, host) {
         "canva.com": "PROXY 200.10.35.100:50100",
         "platzi.com": "PROXY 200.10.35.100:50100",
         "crehana.com": "PROXY 200.10.35.100:50100",
+        "placeit.net": "PROXY 161.123.54.112:5496",
         "cloud.microsoft": "PROXY 109.111.37.20:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
         "envato.com": "PROXY 109.111.36.220:50100"
@@ -71,6 +72,7 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
 
 
 
