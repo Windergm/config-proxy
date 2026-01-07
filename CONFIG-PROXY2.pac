@@ -53,8 +53,8 @@ function FindProxyForURL(url, host) {
         "adobe.com": "PROXY 102.129.178.6:4414",
         "perplexity.ai": "PROXY 96.62.127.25:50100",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
-        "freepik.com": "PROXY 109.111.36.220:50100",
-        "freepik.es": "PROXY 109.111.36.220:50100",
+        "freepik.com": "PROXY 109.111.36.100:50100",
+        "freepik.es": "PROXY 109.111.36.100:50100",
         "canva.com": "PROXY 200.10.35.100:50100",
         "platzi.com": "PROXY 200.10.35.100:50100",
         "crehana.com": "PROXY 200.10.35.100:50100",
@@ -73,6 +73,7 @@ function FindProxyForURL(url, host) {
     // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
        return "DIRECT";
 }
+
 
 
 
