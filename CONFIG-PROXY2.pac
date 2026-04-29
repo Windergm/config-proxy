@@ -51,6 +51,7 @@ function FindProxyForURL(url, host) {
     // Para estos dominios estrictamente usar su proxy asignado, si no funciona hay error
     var staticProxies = {
         "adobe.com": "PROXY 102.129.178.6:4414",
+        "magnific.com": "PROXY 109.111.37.20:50100",
         "perplexity.ai": "PROXY 96.62.127.25:50100",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
         "freepik.com": "PROXY 109.111.37.20:50100",
