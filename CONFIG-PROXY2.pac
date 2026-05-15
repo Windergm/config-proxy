@@ -3,9 +3,9 @@ function FindProxyForURL(url, host) {
     url = url.toLowerCase();
     host = host.toLowerCase();
 
-    // =========================
-    // FIREFOX / MOZILLA DIRECT
-    // =========================
+    // ====================================
+    // FIREFOX Y MOZILLA SIEMPRE DIRECT
+    // ====================================
     var firefoxDomains = [
         "firefox.com",
         "mozilla.org",
@@ -15,16 +15,13 @@ function FindProxyForURL(url, host) {
         "services.mozilla.com",
         "addons.mozilla.org",
         "services.addons.mozilla.org",
-        "content-signature-2.cdn.mozilla.net",
-        "aus5.mozilla.org",
         "detectportal.firefox.com",
-        "shavar.services.mozilla.com",
         "push.services.mozilla.com",
-        "location.services.mozilla.com",
         "support.mozilla.org"
     ];
 
     for (var i = 0; i < firefoxDomains.length; i++) {
+
         if (
             host === firefoxDomains[i] ||
             dnsDomainIs(host, "." + firefoxDomains[i])
@@ -33,19 +30,9 @@ function FindProxyForURL(url, host) {
         }
     }
 
-    // =========================
-    // ENVATO DIRECT
-    // =========================
-    if (
-        dnsDomainIs(host, ".envatousercontent.com") ||
-        host === "envatousercontent.com"
-    ) {
-        return "DIRECT";
-    }
-
-    // =========================
+    // ====================================
     // REDES LOCALES
-    // =========================
+    // ====================================
     if (
         isPlainHostName(host) ||
         shExpMatch(host, "localhost") ||
@@ -57,70 +44,136 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
     }
 
-    // Rango 172.16.0.0 - 172.31.255.255
+    // RANGO 172.16-31
     for (var n = 16; n <= 31; n++) {
+
         if (shExpMatch(host, "172." + n + ".*")) {
             return "DIRECT";
         }
     }
 
-    // =========================
-    // DESCARGAS DIRECTAS
-    // =========================
+    // ====================================
+    // MULTIMEDIA Y ARCHIVOS DIRECT
+    // ====================================
     if (
-        /\.(zip|rar|7z|tar|gz|iso|exe|msi|mp4|mkv|avi|mov|mp3|flac|wav|pdf)(\?|$)/i.test(url)
+        /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|mp4|mkv|avi|mov|webm|mp3|wav|flac|aac|ogg|m4a|pdf|zip|rar|7z|tar|gz|iso|exe|msi|apk|torrent)(\?|$)/i.test(url)
     ) {
         return "DIRECT";
     }
 
-    // =========================
-    // PROXIES ESTÁTICOS
-    // =========================
-    var staticProxies = {
-        "adobe.com": "PROXY 109.111.37.20:4414",
-        "magnific.com": "PROXY 109.111.37.20:50100",
-        "perplexity.ai": "PROXY 109.111.37.20:50100",
-        "chatgpt.com": "PROXY 91.132.124.97:8080",
-        "openai.com": "PROXY 91.132.124.97:8080",
-        "oaistatic.com": "PROXY 91.132.124.97:8080",
-        "freepik.com": "PROXY 109.111.36.100:50100",
-        "freepik.es": "PROXY 109.111.36.100:50100",
-        "canva.com": "PROXY 109.111.37.20:50100",
-        "platzi.com": "PROXY 109.111.37.2050100",
-        "crehana.com": "PROXY 109.111.37.20:50100",
-        "placeit.net": "PROXY 161.123.54.112:5496",
-        "cloud.microsoft": "PROXY 109.111.37.20:50100",
-        "creativefabrica.com": "PROXY 148.135.147.24:6534",
-        "motionarray.com": "PROXY 109.111.37.20:50100",
-        "domestika.org": "PROXY 109.111.37.20:50100",
-        "envato.com": "PROXY 109.111.36.100:50100"
-    };
+    // ====================================
+    // STREAMING/CDN DIRECT
+    // ====================================
+    var mediaDomains = [
+        "googlevideo.com",
+        "ytimg.com",
+        "youtube.com",
+        "netflix.com",
+        "nflxvideo.net",
+        "spotifycdn.com",
+        "scdn.co",
+        "fbcdn.net",
+        "cdninstagram.com",
+        "twimg.com",
+        "imgur.com",
+        "discordcdn.com",
+        "cloudfront.net",
+        "akamaihd.net",
+        "fastly.net",
+        "cdn.cloudflare.net"
+    ];
 
-    for (var domain in staticProxies) {
+    for (var j = 0; j < mediaDomains.length; j++) {
 
         if (
-            host === domain ||
-            dnsDomainIs(host, "." + domain)
+            host === mediaDomains[j] ||
+            dnsDomainIs(host, "." + mediaDomains[j])
         ) {
-            return staticProxies[domain];
+            return "DIRECT";
         }
     }
 
-    // =========================
-    // TODO LO DEMÁS DIRECT
-    // =========================
+    // ====================================
+    // LOGIN Y AUTENTICACION POR PROXY
+    // ====================================
+    if (
+        shExpMatch(url, "*login*") ||
+        shExpMatch(url, "*signin*") ||
+        shExpMatch(url, "*auth*") ||
+        shExpMatch(url, "*oauth*")
+    ) {
+        return "PROXY 91.132.124.97:8080";
+    }
+
+    // ====================================
+    // CHATGPT
+    // ====================================
+    if (
+        host === "chatgpt.com" ||
+        dnsDomainIs(host, ".chatgpt.com") ||
+        host === "openai.com" ||
+        dnsDomainIs(host, ".openai.com") ||
+        host === "oaistatic.com" ||
+        dnsDomainIs(host, ".oaistatic.com")
+    ) {
+
+        // multimedia DIRECT
+        if (
+            shExpMatch(url, "*.png*") ||
+            shExpMatch(url, "*.jpg*") ||
+            shExpMatch(url, "*.mp4*") ||
+            shExpMatch(url, "*.webm*")
+        ) {
+            return "DIRECT";
+        }
+
+        // APIs/login PROXY
+        return "PROXY 91.132.124.97:8080";
+    }
+
+    // ====================================
+    // ADOBE
+    // ====================================
+    if (
+        host === "adobe.com" ||
+        dnsDomainIs(host, ".adobe.com")
+    ) {
+        return "PROXY 102.129.178.6:4414";
+    }
+
+    // ====================================
+    // FREEPIK
+    // ====================================
+    if (
+        host === "freepik.com" ||
+        dnsDomainIs(host, ".freepik.com")
+    ) {
+        return "PROXY 109.111.36.100:50100";
+    }
+
+    // ====================================
+    // ENVATO
+    // ====================================
+    if (
+        host === "envato.com" ||
+        dnsDomainIs(host, ".envato.com")
+    ) {
+        return "PROXY 109.111.36.100:50100";
+    }
+
+    // descargas envato DIRECT
+    if (
+        host === "envatousercontent.com" ||
+        dnsDomainIs(host, ".envatousercontent.com")
+    ) {
+        return "DIRECT";
+    }
+
+    // ====================================
+    // TODO LO DEMAS DIRECT
+    // ====================================
     return "DIRECT";
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
