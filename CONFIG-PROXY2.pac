@@ -1,59 +1,88 @@
 function FindProxyForURL(url, host) {
+
     url = url.toLowerCase();
     host = host.toLowerCase();
 
-    // Excepciones para Firefox y servicios internos - siempre DIRECT
-    var firefoxBypass = [
+    // =========================
+    // FIREFOX / MOZILLA DIRECT
+    // =========================
+    var firefoxDomains = [
+        "firefox.com",
+        "mozilla.org",
+        "mozilla.com",
         "accounts.firefox.com",
         "sync.services.mozilla.com",
-        "labs.envato.com/video-gen",
+        "services.mozilla.com",
         "addons.mozilla.org",
-        "mozilla.org",
-        "api-gateway-assets.aws.labs.envato.com",
-        "firefox.com",
-        "services.addons.mozilla.org"
+        "services.addons.mozilla.org",
+        "content-signature-2.cdn.mozilla.net",
+        "aus5.mozilla.org",
+        "detectportal.firefox.com",
+        "shavar.services.mozilla.com",
+        "push.services.mozilla.com",
+        "location.services.mozilla.com",
+        "support.mozilla.org"
     ];
-    for (var i = 0; i < firefoxBypass.length; i++) {
-        if (dnsDomainIs(host, firefoxBypass[i]) || host === firefoxBypass[i]) {
+
+    for (var i = 0; i < firefoxDomains.length; i++) {
+        if (
+            host === firefoxDomains[i] ||
+            dnsDomainIs(host, "." + firefoxDomains[i])
+        ) {
             return "DIRECT";
         }
     }
 
-    // Acceso directo para redes locales y localhost
+    // =========================
+    // ENVATO DIRECT
+    // =========================
+    if (
+        dnsDomainIs(host, ".envatousercontent.com") ||
+        host === "envatousercontent.com"
+    ) {
+        return "DIRECT";
+    }
+
+    // =========================
+    // REDES LOCALES
+    // =========================
     if (
         isPlainHostName(host) ||
         shExpMatch(host, "localhost") ||
         shExpMatch(host, "127.*") ||
         shExpMatch(host, "10.*") ||
-        shExpMatch(host, "172.16.*") ||
-        shExpMatch(host, "172.31.*") ||
         shExpMatch(host, "192.168.*") ||
         shExpMatch(host, "169.254.*")
     ) {
         return "DIRECT";
     }
 
-    // Acceso directo para archivos grandes o multimedia (descargas)
-    if (url.match(/\.(zip|rar|7z|tar|gz|iso|exe|msi|mp4|mkv|avi|mov|mp3|flac|wav|pdf)(\?|$)/)) {
-        return "DIRECT";
+    // Rango 172.16.0.0 - 172.31.255.255
+    for (var n = 16; n <= 31; n++) {
+        if (shExpMatch(host, "172." + n + ".*")) {
+            return "DIRECT";
+        }
     }
 
-    // Permitir descargas DIRECT desde subdominios de Envato (evita errores de conexión)
+    // =========================
+    // DESCARGAS DIRECTAS
+    // =========================
     if (
-        dnsDomainIs(host, "envatousercontent.com") ||
-        shExpMatch(host, "*.envatousercontent.com") ||
-        shExpMatch(host, "elements.envatousercontent.com") ||
-        shExpMatch(host, "downloads.elements.envatousercontent.com")
+        /\.(zip|rar|7z|tar|gz|iso|exe|msi|mp4|mkv|avi|mov|mp3|flac|wav|pdf)(\?|$)/i.test(url)
     ) {
         return "DIRECT";
     }
 
-    // Para estos dominios estrictamente usar su proxy asignado, si no funciona hay error
+    // =========================
+    // PROXIES ESTÁTICOS
+    // =========================
     var staticProxies = {
         "adobe.com": "PROXY 102.129.178.6:4414",
         "magnific.com": "PROXY 109.111.37.20:50100",
         "perplexity.ai": "PROXY 96.62.127.25:50100",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
+        "openai.com": "PROXY 91.132.124.97:8080",
+        "oaistatic.com": "PROXY 91.132.124.97:8080",
         "freepik.com": "PROXY 109.111.36.100:50100",
         "freepik.es": "PROXY 109.111.36.100:50100",
         "canva.com": "PROXY 200.10.35.100:50100",
@@ -61,18 +90,25 @@ function FindProxyForURL(url, host) {
         "crehana.com": "PROXY 200.10.35.100:50100",
         "placeit.net": "PROXY 161.123.54.112:5496",
         "cloud.microsoft": "PROXY 109.111.37.20:50100",
-         "artlist.io": "PROXY 109.111.36.220:50100",
+        "artlist.io": "PROXY 109.111.36.220:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
         "envato.com": "PROXY 109.111.36.100:50100"
     };
+
     for (var domain in staticProxies) {
-        if (dnsDomainIs(host, domain) || host === domain) {
+
+        if (
+            host === domain ||
+            dnsDomainIs(host, "." + domain)
+        ) {
             return staticProxies[domain];
         }
     }
 
-    // Si no está en la lista y no es descarga ni excepción, falla la conexión con proxy inválido
-       return "DIRECT";
+    // =========================
+    // TODO LO DEMÁS DIRECT
+    // =========================
+    return "DIRECT";
 }
 
 
