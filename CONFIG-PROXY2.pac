@@ -77,20 +77,20 @@ function FindProxyForURL(url, host) {
     // PROXIES ESTÁTICOS
     // =========================
     var staticProxies = {
-        "adobe.com": "PROXY 102.129.178.6:4414",
+        "adobe.com": "PROXY 109.111.37.20:4414",
         "magnific.com": "PROXY 109.111.37.20:50100",
-        "perplexity.ai": "PROXY 96.62.127.25:50100",
+        "perplexity.ai": "PROXY 109.111.37.20:50100",
         "chatgpt.com": "PROXY 91.132.124.97:8080",
         "openai.com": "PROXY 91.132.124.97:8080",
         "oaistatic.com": "PROXY 91.132.124.97:8080",
         "freepik.com": "PROXY 109.111.36.100:50100",
         "freepik.es": "PROXY 109.111.36.100:50100",
-        "canva.com": "PROXY 200.10.35.100:50100",
-        "platzi.com": "PROXY 200.10.35.100:50100",
-        "crehana.com": "PROXY 200.10.35.100:50100",
+        "canva.com": "PROXY 109.111.37.20:50100",
+        "platzi.com": "PROXY 109.111.37.2050100",
+        "crehana.com": "PROXY 109.111.37.20:50100",
         "placeit.net": "PROXY 161.123.54.112:5496",
         "cloud.microsoft": "PROXY 109.111.37.20:50100",
-        "artlist.io": "PROXY 109.111.36.220:50100",
+        "artlist.io": "PROXY 109.111.37.20:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
         "envato.com": "PROXY 109.111.36.100:50100"
     };
