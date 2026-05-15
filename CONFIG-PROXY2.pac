@@ -90,7 +90,6 @@ function FindProxyForURL(url, host) {
         "crehana.com": "PROXY 109.111.37.20:50100",
         "placeit.net": "PROXY 161.123.54.112:5496",
         "cloud.microsoft": "PROXY 109.111.37.20:50100",
-        "artlist.io": "PROXY 109.111.36.100:50100",
         "creativefabrica.com": "PROXY 148.135.147.24:6534",
         "motionarray.com": "PROXY 109.111.37.20:50100",
         "envato.com": "PROXY 109.111.36.100:50100"
