@@ -33,6 +33,7 @@ function FindProxyForURL(url, host) {
         "creativefabrica.com": "PROXY 89.47.100.247:46936",
         "cloud.microsoft": "PROXY 109.111.36.100:50100",
         "motionarray.com": "PROXY 109.111.36.100:50100",
+         "domestika.org": "PROXY 109.111.36.100:50100",
         "envato.com": "PROXY 109.111.36.100:50100"
     };
 
