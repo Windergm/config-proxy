@@ -28,7 +28,7 @@ function FindProxyForURL(url, host) {
         "freepik.es": "PROXY 109.111.36.100:50100",
         "platzi.com": "PROXY 200.10.35.100:50100",
         "crehana.com": "PROXY 200.10.35.100:50100",
-        
+        "artlist.io": "PROXY 200.10.35.100:50100",
         "placeit.net": "PROXY 161.123.54.112:5496",
         "creativefabrica.com": "PROXY 89.47.100.247:46936",
         "cloud.microsoft": "PROXY 109.111.36.100:50100",
