@@ -34,6 +34,7 @@ function FindProxyForURL(url, host) {
         "cloud.microsoft": "PROXY 109.111.36.100:50100",
         "motionarray.com": "PROXY 109.111.36.100:50100",
          "domestika.org": "PROXY 109.111.36.100:50100",
+         "placeit.net": "PROXY 216.185.39.62:53600",
         "envato.com": "PROXY 109.111.36.100:50100"
     };
 
